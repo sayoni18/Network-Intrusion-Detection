@@ -38,31 +38,6 @@ from sklearn import preprocessing
 @app.route('/')
 def home():
     if request.method == "POST": 
-        pro = request.form.get("Protocol_Type") 
-        ser = request.form.get("service")  
-        flag = request.form.get("flag")
-        src_bytes = request.form.get("src_bytes")
-        dest_bytes = request.form.get("dest_bytes")
-        logged_in = request.form.get("logged_in")
-        count = request.form.get("count")
-        srv_count = request.form.get("srv_count")
-        serror_rate = request.form.get("serror_rate")
-        srv_serror_rate = request.form.get("srv_serror_rate")
-        rerror_rate = request.form.get("rerror_rate")
-        same_srv_rate = request.form.get("same_srv_rate")
-        diff_srv_rate = request.form.get("diff_srv_rate")
-        srv_diff_host_rate = request.form.get("srv_diff_host_rate")
-        dst_host_count = request.form.get("dst_host_count")
-        dst_host_srv_count = request.form.get("dst_host_srv_count")
-        dst_host_same_srv_rate = request.form.get("dst_host_same_srv_rate")
-        dst_host_diff_srv_rate = request.form.get("dst_host_diff_srv_rate")
-        dst_host_same_src_port_rate = request.form.get("dst_host_same_src_port_rate")
-        dst_host_srv_diff_host_rate = request.form.get("dst_host_srv_diff_host_rate")
-        dst_host_serror_rate = request.form.get("dst_host_serror_rate")
-        dst_host_srv_serror_rate = request.form.get("dst_host_srv_serror_rate")
-        dst_host_rerror_rate = request.form.get("dst_host_rerror_rate")
-        dst_host_srv_rerror_rate = request.form.get("dst_host_srv_rerror_rate")
-        Score = request.form.get("Score")
        
     return render_template("index.html") 
 #@app.route('/')
@@ -75,37 +50,7 @@ def predict():
     For rendering results on HTML GUI
     '''
     int_features = [x for x in request.form.values()]
-    #print(int_features)
-    '''pro = request.form.get("Protocol_Type") 
-    ser = request.form.get("service")  
-    flag = request.form.get("flag")
-    src_bytes = request.form.get("src_bytes")
-    dest_bytes = request.form.get("dest_bytes")
-    logged_in = request.form.get("logged_in")
-    count = request.form.get("count")
-    srv_count = request.form.get("srv_count")
-    serror_rate = request.form.get("serror_rate")
-    srv_serror_rate = request.form.get("srv_serror_rate")
-    rerror_rate = request.form.get("rerror_rate")
-    same_srv_rate = request.form.get("same_srv_rate")
-    diff_srv_rate = request.form.get("diff_srv_rate")
-    srv_diff_host_rate = request.form.get("srv_diff_host_rate")
-    dst_host_count = request.form.get("dst_host_count")
-    dst_host_srv_count = request.form.get("dst_host_srv_count")
-    dst_host_same_srv_rate = request.form.get("dst_host_same_srv_rate")
-    dst_host_diff_srv_rate = request.form.get("dst_host_diff_srv_rate")
-    dst_host_same_src_port_rate = request.form.get("dst_host_same_src_port_rate")
-    dst_host_srv_diff_host_rate = request.form.get("dst_host_srv_diff_host_rate")
-    dst_host_serror_rate = request.form.get("dst_host_serror_rate")
-    dst_host_srv_serror_rate = request.form.get("dst_host_srv_serror_rate")
-    dst_host_rerror_rate = request.form.get("dst_host_rerror_rate")
-    dst_host_srv_rerror_rate = request.form.get("dst_host_srv_rerror_rate")
-    Score = request.form.get("Score")
-    int_ft=np.array(pro,ser,flag,src_bytes,dest_bytes,logged_in,count,srv_count,serror_rate,srv_serror_rate,rerror_rate,same_srv_rate,diff_srv_rate,
-                   srv_diff_host_rate,srv_diff_host_rate,dst_host_count,dst_host_srv_count,dst_host_same_srv_rate,dst_host_diff_srv_rate,
-                   dst_host_same_src_port_rate,dst_host_srv_diff_host_rate,dst_host_serror_rate,dst_host_srv_serror_rate,dst_host_rerror_rate,
-                   dst_host_srv_rerror_rate,Score)'''
-    #int_features=sc.fit_transform(int_features)
+   
     print(int_features[0])
     print(int_features[1])
     print(int_features[2])
@@ -169,7 +114,7 @@ def predict():
 
     output = prediction
 
-    return render_template('index.html', prediction_text='Traffic is '.format(output))
+    return render_template('index.html', prediction_text='Traffic is {}'.format(output))
 
 
 if __name__ == "__main__":
