@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+<style>
+body {font-family: Open Sans, Roboto; border: 1px solid #e7ceee;}
+form {border: 1px solid #e7ceee; padding: 20px;}
+ .column {
+    float: left;
+    width: 50%;
+    font-family: Open Sans;
+    }
+
+    .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
+    
+   
+
+   </style>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body style="background-color:#f4f2f2;">
+ <div class="login">
+        
+	<h1 style="color:Turquoise; font-family: Poppins;weight: semi-bold; font-size: 200%; text-align: center;">Classify Network Traffic as Normal or Malicious</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+     <div class="row">
+     <div class="column">
+    	<label style="weight: semibold; text-size: 32px"> Protocol Type<br>
+        <input type="text" name="Protocol_Type" placeholder="Protocol_Type" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px" /><br><br>
+        </style></label>
+        </div>
+        <div class="column">
+        <label style="weight: semibold; text-size: 32px"> Service<br>
+        <input type="text" name="service" placeholder="service" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px"/><br><br>
+        </label></div>
+        </div>
+     <div class="row">
+     <div class="column">
+    	<label style="weight: semibold; text-size: 32px">Flag<br>
+        <input type="text" name="flag" placeholder="flag" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px" /><br><br>
+        </style></label>
+        </div>
+        <div class="column">
+        <label style="weight: semibold; text-size: 32px"> Source Bytes<br>
+        <input type="text" name="src_bytes" placeholder="src_bytes" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px"/><br><br>
+        </label></div>
+        </div>
+     <div class="row">
+     <div class="column">
+    	<label style="weight: semibold; text-size: 32px">Destination Bytes<br>
+        <input type="text" name="dest_bytes" placeholder="dest_bytes" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px" /><br><br>
+        </style></label>
+        </div>
+        <div class="column">
+        <label style="weight: semibold; text-size: 32px"> Logged in<br>
+        <input type="text" name="logged_in" placeholder="logged_in" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px"/><br><br>
+        </label></div>
+        </div>
+     <div class="row">
+     <div class="column">
+    	<label style="weight: semibold; text-size: 32px">Count<br>
+        <input type="text" name="count" placeholder="count" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px" /><br><br>
+        </style></label>
+        </div>
+        <div class="column">
+        <label style="weight: semibold; text-size: 32px"> Server Count<br>
+        <input type="text" name="srv_count" placeholder="srv_count" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px"/><br><br>
+        </label></div>
+        </div>
+     <div class="row">
+     <div class="column">
+    	<label style="weight: semibold; text-size: 32px">Serror Rate<br>
+        <input type="text" name="serror_rate" placeholder="serror_rate" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px" /><br><br>
+        </style></label>
+        </div>
+        <div class="column">
+        <label style="weight: semibold; text-size: 32px"> Server Serror Rate <br>
+        <input type="text" name="srv_serror_rate" placeholder="srv_serror_rate" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px"/><br><br>
+        </label></div>
+        </div>
+     <div class="row">
+     <div class="column">
+    	<label style="weight: semibold; text-size: 32px">Rerror Rate<br>
+        <input type="text" name="rerror_rate" placeholder="rerror_rate" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px" /><br><br>
+        </style></label>
+        </div>
+        <div class="column">
+        <label style="weight: semibold; text-size: 32px"> Same Server Rate <br>
+        <input type="text" name="same_srv_rate" placeholder="same_srv_rate" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px"/><br><br>
+        </label></div>
+        </div>
+     <div class="row">
+     <div class="column">
+    	<label style="weight: semibold; text-size: 32px">Different Server Rate<br>
+        <input type="text" name="diff_srv_rate" placeholder="diff_srv_rate" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px" /><br><br>
+        </style></label>
+        </div>
+        <div class="column">
+        <label style="weight: semibold; text-size: 32px"> Server Different Host Rate <br>
+        <input type="text" name="srv_diff_host_rate" placeholder="srv_diff_host_rate" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px"/><br><br>
+        </label></div>
+        </div>
+     <div class="row">
+     <div class="column">
+    	<label style="weight: semibold; text-size: 32px">Destination Host Count<br>
+        <input type="text" name="dst_host_count" placeholder="dst_host_count" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px" /><br><br>
+        </style></label>
+        </div>
+        <div class="column">
+        <label style="weight: semibold; text-size: 32px"> Destination Host Server Count <br>
+        <input type="text" name="dst_host_srv_count" placeholder="dst_host_srv_count" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px"/><br><br>
+        </label></div>
+        </div>
+     <div class="row">
+     <div class="column">
+    	<label style="weight: semibold; text-size: 32px">Destination Host Same Server Rate<br>
+        <input type="text" name="dst_host_same_srv_rate" placeholder="dst_host_same_srv_rate" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px" /><br><br>
+        </style></label>
+        </div>
+        <div class="column">
+        <label style="weight: semibold; text-size: 32px"> Destination Host Different Server rate <br>
+        <input type="text" name="dst_host_diff_srv_rate" placeholder="dst_host_diff_srv_rate" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px"/><br><br>
+        </label></div>
+        </div>
+     <div class="row">
+     <div class="column">
+    	<label style="weight: semibold; text-size: 32px">Destination Host Same Source Port Rate<br>
+        <input type="text" name="dst_host_same_src_port_rate" placeholder="dst_host_same_src_port_rate" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px" /><br><br>
+        </style></label>
+        </div>
+        <div class="column">
+        <label style="weight: semibold; text-size: 32px"> Destination Host Server Different Host Rate <br>
+        <input type="text" name="dst_host_srv_diff_host_rate" placeholder="dst_host_srv_diff_host_rate" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px"/><br><br>
+        </label></div>
+        </div>
+     <div class="row">
+     <div class="column">
+    	<label style="weight: semibold; text-size: 32px">Destination Host Serror Rate Rate<br>
+        <input type="text" name="dst_host_serror_rate" placeholder="dst_host_serror_rate" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px" /><br><br>
+        </style></label>
+        </div>
+        <div class="column">
+        <label style="weight: semibold; text-size: 32px"> Destination Host Server Serror Rate <br>
+        <input type="text" name="dst_host_srv_serror_rate" placeholder="dst_host_srv_serror_rate" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px"/><br><br>
+        </label></div>
+        </div>
+     <div class="row">
+     <div class="column">
+    	<label style="weight: semibold; text-size: 32px">Destination Host Rerror Rate<br>
+        <input type="text" name="dst_host_rerror_rate" placeholder="dst_host_rerror_rate" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px" /><br><br>
+        </style></label>
+        </div>
+        <div class="column">
+        <label style="weight: semibold; text-size: 32px"> Destination Host Server Rerror Rate <br>
+        <input type="text" name="dst_host_srv_rerror_rate" placeholder="dst_host_srv_rerror_rate" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 550px"/><br><br>
+        </label></div>
+        </div>
+     <div class="row">
+     <div class="column">
+    	<label style="weight: semibold; text-size: 32px">Score<br>
+        <input type="text" name="Score" placeholder="Score" required="required" style="border: 4px; corner radius: 30px; padding: 8px; height: 28px; width: 350px" /><br><br>
+        </style></label> 
+        </div>
+        <div class="column"><br>
+        <div class="button">
+        <button style="background-color: #32a4fa; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);" >Predict</style></button></div>
+        </div></div>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
