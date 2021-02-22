@@ -16,21 +16,7 @@ certifi==2020.6.20
 cffi==1.14.0
 chardet==3.0.4
 click==7.1.2
-conda==4.8.3
-conda-build==3.18.11
-conda-package-handling==1.7.0
-conda-verify==3.4.2
-contextlib2==0.6.0.post1
-cryptography==2.9.2
-cycler==0.10.0
-Cython==0.29.14
-cytoolz==0.10.1
-dask @ file:///tmp/build/80754af9/dask-core_1594156306305/work
 decorator==4.4.2
-defusedxml==0.6.0
-diff-match-patch @ file:///tmp/build/80754af9/diff-match-patch_1594828741838/work
-dill==0.3.3
-distributed @ file:///C:/ci/distributed_1594742844291/work
 docutils==0.16
 entrypoints==0.3
 et-xmlfile==1.0.1
@@ -42,7 +28,6 @@ fsspec==0.7.4
 future==0.18.2
 gast==0.3.3
 gensim==3.8.3
-gevent @ file:///C:/ci/gevent_1593005471151/work
 glob2==0.7
 gmpy2==2.0.8
 google-auth==1.22.1
