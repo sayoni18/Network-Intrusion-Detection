@@ -38,8 +38,7 @@ from sklearn import preprocessing
 @app.route('/')
 def home():
     if request.method == "POST": 
-       
-    return render_template("index.html") 
+       return render_template("index.html") 
 #@app.route('/')
 #def home():
     #return render_template('index.html')
